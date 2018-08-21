@@ -1,12 +1,18 @@
 const express = require('express');
 const app = express();
-const morgan = require('morgan');  // Middlemare for logging requests
-const bodyParser = require('body-parser');
+const morgan = require('morgan');                  // Middlemare for logging requests
+const bodyParser = require('body-parser');         // Middleware for parsing data
+const mongoose = require('mongoose');              // 
+require('dotenv').config();
 
 // Api routes
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
+// Database
+mongoose.connect(process.env.MONGO_ATLAS_URL, { useNewUrlParser: true });
+
+// Middleware
 app.use(morgan('dev'));                            // 'dev' is for the form of the output.
 app.use(bodyParser.urlencoded({extended: false})); // Parses urlencoded data.
 app.use(bodyParser.json());                        // Parses json data. Needed for request bodies.
@@ -19,10 +25,13 @@ app.use((req, res, next) => {
     'Origin, X-Requeste-With, Content-Type, Accept, Authorization'
   );
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    res.header(                                    // The methods allowed
+      'Access-Control-Allow-Methods', 
+      'PUT, POST, PATCH, DELETE, GET'
+    );
     return res.status(200).json({});
   }
-  next();  // Without next the access is blocked
+  next();                                          // Without next, access is blocked
 });
 
 // Routes for handling requests (route does not need the main endpoint name at the beginning)
