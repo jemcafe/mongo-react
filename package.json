@@ -1,0 +1,12 @@
+{
+  "name": "node-mongodb",
+  "version": "1.0.0",
+  "description": "RESTful API with node and mongodb",
+  "main": "index.js",
+  "repository": "https://github.com/jemcafe/node-mongodb.git",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
