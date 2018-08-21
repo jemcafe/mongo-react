@@ -1,3 +1,3 @@
 ## RESTful API with Node with and MongoDB
 
-Organizing Api and connecting it to Mongodb.
+Creating and organizing a simple Restful API which is connected it to a Mongodb database.
