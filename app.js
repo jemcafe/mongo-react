@@ -10,7 +10,10 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
 // Database
-mongoose.connect(process.env.MONGO_ATLAS_URL, { useNewUrlParser: true });
+mongoose.connect(
+  "mongodb://nd-md-ms:" + process.env.MONGO_ATLAS_PWD + "@node-mongo-shop-shard-00-00-6ii82.mongodb.net:27017,node-mongo-shop-shard-00-01-6ii82.mongodb.net:27017,node-mongo-shop-shard-00-02-6ii82.mongodb.net:27017/test?ssl=true&replicaSet=node-mongo-shop-shard-0&authSource=admin&retryWrites=true",
+  { useNewUrlParser: true }
+);
 
 // Middleware
 app.use(morgan('dev'));                            // 'dev' is for the form of the output.
@@ -45,8 +48,8 @@ app.use((req, res, next) => {
   next(error);
 });
 
-app.use((error, req, res,next) => {
-  res.status(error.status || 500)
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
   res.json({
     error: { message: error.message }
   });
