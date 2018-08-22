@@ -17,10 +17,6 @@ router.get('/', (req, res, next) => {
     console.log(err);
     res.status(500).json({error: err});
   });
-
-  // res.status(200).json({
-  //   message: 'Handling GET request to /products'
-  // });
 });
 
 router.post('/', (req, res, next) => {
@@ -66,11 +62,6 @@ router.get('/:productId', (req, res, next) => {
       console.log(err);
       res.status(500).json({error: err});
     });
-
-  // res.status(200).json({
-  //   message: 'Handling GET request to /products for a product',
-  //   id: req.params.productId
-  // });
 });
 
 router.patch('/:productId', (req, res, next) => {
@@ -95,11 +86,6 @@ router.patch('/:productId', (req, res, next) => {
       console.log(err);
       res.status(500).json({error: err});
     });
-
-  // res.status(200).json({
-  //   message: 'Product updated!',
-  //   id: req.params.productId
-  // });
 });
 
 router.delete('/:productId', (req, res, next) => {
@@ -113,11 +99,6 @@ router.delete('/:productId', (req, res, next) => {
       console.log(err);
       res.status(500).json({error: err});
     });
-
-  // res.status(200).json({
-  //   message: 'Product deleted!',
-  //   id: req.params.productId
-  // });
 });
 
 module.exports = router;
